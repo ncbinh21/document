@@ -1,0 +1,15 @@
+JSTL:	JSP Standard Tag Library (JSTL) là thư viện thẻ chuẩn cung cấp các thẻ để kiểm soát hành vi trang,
+		lặp đi lặp lại và các lệnh điều khiển, các thẻ quốc tế hóa, và các thẻ SQL. 
+		JSTL là một phần của Java EE API và trong hầu hết các container servlet
+		Có 5 loại:
+			Các thẻ cơ bản.
+			Các thẻ định dạng và địa phương hóa
+			Các thẻ SQL
+			Các thẻ XML
+			Các thẻ hàm JSTL
+Servlet Filter:
+	Filter sử dụng để chuyển yêu cầu người dùng tới một trang khác
+	Ngăn chặn truy cập vào một trang web nào đó nếu người dùng không có quyền.
+	Sử dụng để ghi lại các thông tin Log.
+	Filter có thể sử dụng để mã hóa trang web. Ví dụ như sét đặt mã hóa UTF-8 cho trang. 
+	Mở và đóng kết nối tới Database và chuẩn bị giao dịch JDBC (JDBC Transaction).

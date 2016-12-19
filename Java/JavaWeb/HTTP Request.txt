@@ -1,0 +1,21 @@
+Hai phương thức được sử dụng nhiều nhất trong HTTP request là GET và POST
+
+Với GET, câu truy vấn sẽ được đính kèm vào đường dẫn của HTTP request. Ví dụ: /?username=”abc”&password=”def”
+
+Một số đặc điểm của phương thức GET:
+	GET request có thể được cached, bookmark và lưu trong lịch sử của trình duyệt.
+	GET request bị giới hạn về chiều dài, do chiều dài của URL là có hạn.
+	GET request không nên dùng với dữ liệu quan trọng, chỉ dùng để nhận dữ liệu.
+	
+Ngược lại, với POST thì câu truy vấn sẽ được gửi trong phần message body của HTTP request, một số đặc điểm của POST như:
+	POST không thể cached, bookmark hay lưu trong lịch sử trình duyệt.
+	POST không bị giới hạn về độ dài.
+	Các phương thức khác	
+
+Ngoài GET và POST, HTTP request còn có thể có một số phương thức khác như:
+	HEAD: Tương tự như GET, nhưng nó truyền tải dòng trạng thái và khu vực Header.
+	PUT: Thay đổi tất cả các đại diện hiện tại của nguồn mục tiêu với nội dung được tải lên.
+	DELETE: Gỡ bỏ tất cả các đại diện hiện tại của nguồn mục tiêu bởi URI.
+	OPTIONS: Miêu tả các chức năng giao tiếp cho nguồn mục tiêu.
+	CONNECT: Thiết lập một tunnel tới Server được xác định bởi URI đã cung cấp.
+	TRACE: Trình bày một vòng lặp kiểm tra thông báo song song với path tới nguồn mục tiêu.

@@ -1,0 +1,43 @@
+URI (Uniform Resource Identifier )là một chuỗi kí tự được sử dụng để định danh tên, hoặc tài nguyên trên Internet
+	Việc định danh này cho phép tương tác với các tài nguyên trên mạng sử dụng một giao thức xác định
+	URI xác định tài nguyên theo vị trí, theo tên, hoặc cả 2. URI có 2 nhánh là URL và URN
+		URI giống như là tập hợp các phương pháp để xác định một con người cụ thể nào đó
+		URL là cách để ta tìm được người đó
+		URN có thể hiểu là tên của người đó
+	Theo tiêu chuẩn hiện hành RFC 3986 một URI được cấu tạo từ 5 phần: 
+		scheme (Sự xếp đặt) 
+		authority (nhà cung cấp)
+		path (đường dẫn) 
+		query (truy vấn) 
+		fragment (phân mảnh) 
+		trong đó chỉ có scheme và path là bắt buộc phải có trong mỗi URI: Cú pháp chung chung là
+		URI = scheme ":" hier-part [ "?" query ] [ "#" fragment ]
+		Theo đó hier-part là cho một authority tùy chọn và path
+
+API (Application Programming Interface) là giao diện lập trình ứng dụng
+	Nó là 1 giao tiếp phần mềm được dùng bởi các ứng dụng khác nhau
+	Giống như bàn phím là một thiết bị giao tiếp giữa người dùng và máy tính
+	API là 1 giao tiếp phần mềm như giữa chương trình và hệ điều hành
+	Hầu hết các hàm API được chứa trong các file DLL. Các API, cũng như hầu hết các interfaces, là trừu tượng (abstract)
+	
+SOAP (Simple Object Access Protocol) Một tiêu chuẩn của W3C
+	SOAP là một giao thức truyền tải dữ liệu. HTTP thì truyền 1 trang HTML, còn SOAP thì truyền dữ liệu là XML
+	Là giao thức sử dụng XML để định nghĩa dữ liệu dạng thuần văn bản (plain text) thông qua HTTP
+	SOAP là cách mà  Web Service sử dụng để truyền tải dữ liệu
+	Vì dựa trên XML nên SOAP là một giao thức không phụ thuộc platform cũng như bất kì ngôn ngữ lập trình nào
+	
+WSDL (Web Services Description Language)
+	Là 1 file XML mô tả những thông tin cần thiết cho Client biết WebServices đó export những Module nào, kiểu dữ liệu nào vào, ra...
+	Web service consumer đọc file WSDL để biết được web service cung cấp những hàm ứng dụng nào, có cấu trúc ra sao, sử dụng ra sao.
+	
+UDDI là 1 database lưu trữ các thông tin về WebServices
+
+REST (REpresentational State Transfer)
+	Là một kiểu kiến trúc được sử dụng trong việc giao tiếp giữa máy tính và máy chủ trong việc quản lý các tài nguyên trên internet
+	REST được sử dụng trong việc phát triển các ứng dụng Web Services sử dụng giao thức HTTP trong giao tiếp thông qua mạng internet. 
+	Các ứng dụng sử dụng kiến trúc REST này thì sẽ được gọi là ứng dụng phát triển theo kiểu RESTful.
+	RESTful service là một kiến trúc thống nhất giúp thiết kế các website để có thể dễ dàng quản lý các tài nguyên. Với:
+		POST: Tạo ra một resource để gửi dữ liệu lên máy chủ
+		PUT: Cập nhật một resource
+		DELETE: Xoá một resource
+		GET: Hiển thị resource (Ví dụ hiển thị 1 bài viết, 1 hình ảnh ...)

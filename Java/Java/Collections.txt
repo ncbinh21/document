@@ -1,0 +1,20 @@
+﻿Bây giờ ta sẽ đi vào chi tiết hơn, Collections bao gồm 3 thành phần :
+
+Giao diện List định nghĩa một sưu tập các phần tử Object có thể dẫn hướng.
+Giao diện Set định nghĩa một sưu tập không có các phần tử trùng lặp.
+Giao diện Map định nghĩa một sưu tập các cặp khóa - giá trị.
+
+List : ArrayList, Vector 
+Set : HashSet, TreeSet
+	HashSet: không đảm bảo thứ tự vòng lặp.
+	TreeSet: bảo đảm thứ tự vòng lặp.
+Map :HashMap và TreeMap
+
+Collections có một số hành vi:
+
+
+Các phương thức để mô tả kích thước của sưu tập (như size() và isEmpty()).
+Các phương thức để mô tả nội dung của sưu tập (như contains() và containsAll()).
+Các phương thức để hỗ trợ thao tác về nội dung của sưu tập (như add(), remove() và clear()).
+Các phương thức để cho phép bạn chuyển đổi một sưu tập thành một mảng (như toArray()).
+Một phương thức để cho phép bạn nhận được một trình vòng lặp (iterator) trên mảng các phần tử (iterator()).

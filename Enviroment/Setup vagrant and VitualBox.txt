@@ -1,0 +1,27 @@
+WinSCP Downloads > file windows to linux
+iMacros > Record and replay input form
+
+
+Download VitualBox: https://www.virtualbox.org/wiki/Downloads
+Download Vagrant: https://www.vagrantup.com/downloads.html
+Download MySQL: https://dev.mysql.com/downloads/workbench/
+Download Box: https://www.vagrantup.com/downloads.html -> Boxes Tab
+
+Setup Box
+Git Bash -> vagrant box add centos/7   --- "centos/7" in Boxes Tab->virtualbox External
+Git Bash -> vagrant box list 
+Git Bash -> vagrant init centos/7
+
+Enable config.vm.network "forwarded_port", guest: 80, host: 8080 in vagrantfile
+
+Git Bash -> vagrant ssh
+# clean /var/www
+Git Bash -> sudo rm -Rf /var/www/html
+# symlink /var/www => /vagrant
+Git Bash -> sudo ln -s /vagrant /var/www/html
+Git Bash -> sudo nano /etc/apache2/apache2.conf
+/var/www ->all
+Git Bash -> sudo a2enmod rewrite
+Git Bash -> sudo service apache2 restart
+
+

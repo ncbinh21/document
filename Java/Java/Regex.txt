@@ -1,0 +1,50 @@
+Cấu trúc //
+/[Điều kiện]/g: g là global, yêu cầu tìm trên cả văn bản
+/[Điều kiện]/i: i là Case-insensitive, tìm không phân biệt chữ hoa, chữ thường
+/[Điều kiện]/m: m là multiline, tìm trên nhiều dòng
+
+Ký tự đại diện
+
+	[0-9] tìm tất cả các chữ số từ 0 đến 9
+	[A-Z] tìm tất cả các ký tự nằm trong khoảng từ A hoa đến Z hoa
+	[a-z] tìm tất cả các ký tự nằm trong khoảng từ a thường đến z thường
+	[A-z] tìm tất cả các ký tự nằm trong khoảng từ A hoa đến z thường
+	. dấu chấm đại diện cho bất kỳ ký tự nào ngoại từ ký tự xuống dòng & kết thúc dòng
+	\w đại diện cho một từ, tương đương với [A-Za-z0-9_]
+	\W ngược lại với \w, đại diện cho chuỗi không phải từ, tương đương với [^A-Za-z0-9_], ví dụ dấu phẩy, khoảng trắng...
+	\d đại diện cho ký tự số, tương đương với [0-9]
+	\D ngược lại với \d, đại diện cho ký tự không phải số, tương đương với [^0-9]
+	\s đại diện cho ký tự khoảng trắng
+	\S đại diện cho ký tự không phải khoảng trắng
+	\xxx : tìm một ký tự Latin được chỉ định bởi số xxx dạng bát phân (octal)
+	\xdd : tìm một ký tự được chỉ định bởi 1 số dạng hexa
+	\uxxxx : tìm một ký tự Unicode được chỉ định bởi số xxxx dạng hexa
+	
+Nhóm các ký tự
+
+	(abc) tìm nhóm ký tự abc và lưu lại kết quả tìm để tham tham chiếu lại nếu cần
+	\1 trả về chuỗi phù hợp thứ nhất ở kết quả tìm nhóm ký tự trước đó
+	(?:abc) tìm nhóm ký tự abc và không lưu kết quả tìm
+	(?=abc) thường có thêm biểu thức chính phía trước, tìm nhóm ký tự phù hợp biểu thức chính và có nhóm ký tự abc theo sau. 
+	Chuỗi trả về không bao gồm nhóm ký tự abc.
+	(?!abc) thường có thêm biểu thức chính phía trước, tìm nhóm ký tự phù hợp biểu thức chính và không có nhóm ký tự abc theo sau. 
+	Chuỗi trả về không bao gồm nhóm ký tự abc.
+	
+Ký tự đánh dấu
+	
+	^ tìm chuỗi con phù hợp nằm ở đầu chuỗi cha hoặc dòng
+	$ tìm chuỗi con phù hợp nằm ở cuối chuỗi cha hoặc dòng
+	\b tìm chuỗi con phù hợp nằm ở đầu hoặc cuối của một từ trong chuỗi gốc. Tùy thuộc vào vị trí đặt \b ở đầu hoặc cuối của chuỗi trong biểu thức.
+	\B ngược lại với \b
+	
+Ký tự chỉ số lượng
+
+	| toán tử hoặc
+	+ lặp một ký tự hoặc một biểu thức con trước đó >=1 lần. Dạng ghi ngắn của {1,}
+	* lặp một ký tự hoặc một biểu thức con trước đó >=0 lần.  Dạng ghi ngắn của {0,}
+	? lặp một ký tự hoặc một biểu thức con trước đó 0 hoặc 1 lần. Dạng ghi ngắn của {0,1}
+	{n}: lặp một ký tự hoặc một biểu thức con trước đó x lần 
+	{n,}: lặp một ký tự hoặc một biểu thức con trước đó >=n lần 
+	{n,m}: lặp một ký tự hoặc một biểu thức con trước đó n đến m lần
+	? theo sau vòng lặp sẽ là tìm kiếm lười
+	\ dùng để chèn ký tự đặc biệt vào biểu thức. \t \n \r \. \\ \/ \+ \* \? \^ \$ \[ \] \{ \} \| \( \)

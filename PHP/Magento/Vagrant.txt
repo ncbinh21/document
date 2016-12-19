@@ -1,0 +1,2 @@
+sudo chmod -R 777 var pub : Giving full control (read/write/execute)
+sudo rm -rf var/cache/* var/generation/* : clear cache sever

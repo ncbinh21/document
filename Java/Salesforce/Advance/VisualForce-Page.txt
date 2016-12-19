@@ -1,0 +1,114 @@
+﻿<apex:page standardController/Controller="Account">
+Chọn Object Account
+
+<apex:inputField>
+Tạo input thông thường có thể get dữ liệu từ các Field trong Object
+
+<apex:inputText>
+Tạo input có thể nhập vào 
+
+<apex:pageBlock> 
+Tạo form	
+
+<apex:includeScript value="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" />
+Nhúng script
+
+<apex:page standardController="Account" contentType="application/vnd.ms-excel">
+Để hiển thị trang này trong Excel <contentType>
+
+
+<apex:commandButton> 
+Tạo một phím button để gọi một hành động
+
+<apex:commandLink> creates a link that calls an action
+Tạo một link để gọi một hành động
+
+
+<apex:actionSupport>
+Tạo một event như "onclick", "onmouseover" để gọi môt hành động
+
+<apex:actionFunction> 
+Định nghĩa một hàm JavaScript mới để gọi một hành động
+
+<apex:dataList var="a" value="{!accounts}" type="1"> {!a.name} </apex:dataList>
+Gọi một data List (gọi tất cả các name trong accounts) 
+
+{!greeting}:  
+Gọi hàm getGreeting() từ extensions
+
+{!$CurrentPage.parameters.key = 'true'}
+
+Rendered : It use to place condition for a component(Field, outptpanel, section etc), that will show or not on page.
+ReRender : It is use after a ajax call, Is comonent will again check condition for that component.
+RederAs : It is use for  Visualforce page show  as PDF file or other.
+
+<apex:commandLink> 
+Dùng để POST (phải đặt trong một form)
+
+<apex:outputLink> 
+Dùng để GET
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,24 @@
+Inefficient querying of child items
+trigger LimitExample on Invoice_Statement__c (before insert, before update) {
+	for(Invoice_Statement__c inv : Trigger.new) {
+		// This SOQL query executes once for each item in Trigger.new.
+		// It gets the line items for each invoice statement.
+		List<Line_Item__c> liList = [SELECT Id,Units_Sold__c,Merchandise__c FROM Line_Item__c WHERE Invoice_Statement__c = :inv.Id];
+		for(Line_Item__c li : liList) {
+			// Do something
+		}
+	}
+}
+
+
+Querying of child items with one SOQL query
+trigger EnhancedLimitExample on Invoice_Statement__c (before insert, before update) {
+	// Perform SOQL query outside of the for loop.
+	// This SOQL query runs once for all items in Trigger.new.
+	List<Invoice_Statement__c> invoicesWithLineItems = [SELECT Id,Description__c,(SELECT Id,Units_Sold__c,Merchandise__c from Line_Items__r) FROM Invoice_Statement__c WHERE Id IN :Trigger.newMap.KeySet()];
+	for(Invoice_Statement__c inv : invoicesWithLineItems) {
+		for(Line_Item__c li : inv.Line_Items__r) {
+			// Do something
+		}
+	}
+}

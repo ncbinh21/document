@@ -1,0 +1,91 @@
+﻿sObject: Đề cập đến một đối tượng nào đó có thể được lưu trữ trong cơ sở dữ liệu nền tảng Force.com. 
+		 Một biến sObject đại diện cho một hàng dữ liệu và chỉ có thể được khai báo trong Apex sử dụng tên SOAP API của đối tượng.
+	sObject Collections: Lists of sObject
+						 Sets of sObject
+						 Maps of sObject
+		 
+DML: (Data Manipulation Language) - ngôn ngữ thao tác dữ liệu - cho phép thực thi các câu truy vấn,
+	bao gồm cú pháp để cập nhật – sửa đổi, chèn thêm và xoá các mẩu tin.	
+	DML Statements: như try ... catch. 
+		Khi xuất hện một ngoại lệ trong quá trình DML. Xử lý ngay lập tức dừng lại và nhảy đến khối catch
+	Database Class Methods
+		Cho phép nhiều phần hoàn thành trong suốt quá trình DML. Những record bị lỗi có thể bị kiểm tra và gởi lại nếu cần.
+	- Inserting and Updating Records
+	- Upserting Records
+	- Merging Records
+	- Deleting Records
+	- Restoring Deleted Records
+	- Converting Leads
+		
+SOQL (Salesforce Object Query Language) and SOSL (Salesforce Object Search Language) Querie: 
+	Sử dụng SOQL với các query() gọi để chọn các bản ghi cho một đối tượng duy nhất.
+	Sử dụng SOSL với việc search() gọi để tìm hồ sơ cho một hoặc nhiều đối tượng.
+	
+Dynamic Apex
+	Dynamic SOQL:
+		Dynamic SOQL đề cập đến việc tạo ra một chuỗi SOQL lúc chạy với mã Apex. 
+		Dynamic SOQL cho phép bạn tạo các ứng dụng linh hoạt hơn.
+	Dynamic DML: 
+		Ngoài truy vấn mô tả thông tin và xây dựng SOQL truy vấn trong thời gian chạy, 
+		bạn cũng có thể tạo sObjects động, và chèn chúng vào cơ sở dữ liệu sử dụng DML.
+		
+	Dynamic SOQL and SOSL queries:  Cung cấp khả năng để thực hiện SOQL hay SOSL như một chuỗi ở thời gian chạy
+	Dynamic DML:					Cung cấp khả năng để tạo một record và insert nó vào cơ sở dữ liệu dùng DML 
+
+	((((( Dynamic SOQL and SOSL queries provide the ability to execute SOQL or SOSL as a string at runtime, 
+	while dynamic DML provides the ability to create a record dynamically and then insert it into the database using DML. )))))
+		
+	
+Apex Security and Sharing
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+SOQL: SELECT ... FROM ... WHERE ... -->> salesforce định nghĩa sẵn
+DML: String sql = "SELECT ...";
+		if(...)
+		sql += "FROM ...";
+		if(...)
+		sql += "WHERE ...";
+		if(...)
+		sql += "AND ...";
+		excute sql;
+
+LIMIT
+	Total number of records retrieved by SOQL queries:			50,000	
+	Total number of records retrieved by DML: 					10,000
+	Total number of SOSL queries issued:						20
+	Total number of records retrieved by a single SOSL query:	2,000
+	Total number of DML statements issued 2:					150
+--------------------------------------------------------------------------------------------------------------------------------------
+
+Asynchronouns Apex
+	Future Methods:
+		Khi bạn có một phương thức chạy lâu và cần phải ngăn chặn việc trì hoãn giao dịch Apex
+		Khi bạn gọi các dịch vụ Web bên ngoài
+		Để cách ly các hoạt động DML và bỏ qua hỗn hợp tiết kiệm lỗi DML
+	Queueable Apex:
+		Khi bắt đầu một sự thực hiện lâu dài và gán một ID cho nó.
+		Vượt qua các loại phức tạp của công việc
+		Chuỗi công việc
+	Batch Apex:
+		Đối với công việc lâu dài với khối lượng dữ liệu lớn mà cần phải được thực hiện một lần (công việc bảo trì cơ sở dữ liệu)
+		Đối với công việc mà cần kết quả truy vấn lớn hơn các giao dịch thường xuyên cho phép
+	Scheduled Apex:
+		Sắp xếp một lớp Apex để chạy theo một lịch trình cụ thể
+		
+Web Services
+
+Anonymous Blocks: Thường được xây dựng tự động và được thực hiện duy nhất một lần.
+
+
+
+
+
+
+
+
+
+
+
+		

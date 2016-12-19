@@ -1,0 +1,17 @@
+In the diagram above the user initially requests a page, either by entering a URL or clicking a link or button. This initial page request is
+called the get request.
+1. The constructor methods on the associated custom controller or controller extension classes are called, instantiating the controller
+objects.
+2. If the page contains any custom components, they are created and the constructor methods on any associated custom controllers
+or controller extensions are executed. If attributes are set on the custom component using expressions, the expressions are evaluated
+after the constructors are evaluated.
+3. The page then executes any assignTo attributes on any custom components on the page. After the assignTo methods are
+executed, expressions are evaluated, the action attribute on the <apex:page> component is evaluated, and all other method
+calls, such as getting or setting a property value, are made.
+4. If the page contains an <apex:form> component, all of the information necessary to maintain the state of the database between
+page requests is saved as an encrypted view state. The view state is updated whenever the page is updated.
+5. The resulting HTML is sent to the browser. If there are any client-side technologies on the page, such as JavaScript, the browser
+executes them.
+
+As the user interacts with the page, the page contacts the controller objects as required to execute action, getter, and setter methods.
+Once a new get request is made by the user, the view state and controller objects are deleted.

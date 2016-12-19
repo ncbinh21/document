@@ -1,0 +1,238 @@
+﻿/**
+* Rest API to get Promotion.
+*@author: Cuong.PQ
+*@date: 03/06/2016
+*/
+@RestResource(urlMapping='/getPromotion')
+global class MSC_PromotionGetInfo extends MSC_BasicController {
+    static MSC_BasicController handler = new MSC_PromotionGetInfo();
+    public MSC_PromotionGetInfo() {
+        super(RestContext.request, RestContext.response);
+    }
+    
+    @HttpGet
+    global static void getInfo() {
+        handler.doAction();
+    }
+    
+    global override void executeGet() {
+        // - Get parameters
+        String idx = req.params.get('index');
+        String lmt = req.params.get('limit');
+        //String startEvent = req.params.get('startEvent');
+        String isUsed = req.params.get('isUsed');
+        
+         // - Verify parameters
+        if(String.isBlank(idx)) {
+            Msg err = new Msg();
+            err.messageCode = '511';//'BAD_REQUEST';
+            err.message = System.Label.MSC_ERR_MEMBERSHIP_INVALID_INPUT_REQUIRED_INDEX;
+            responseMesage(400, err);
+            return;
+        } else if(String.isNotBlank(lmt) && !Pattern.matches('^[-]?[0-9]+$',lmt)) {
+            Msg err = new Msg();
+            err.messageCode = '512';//'BAD_REQUEST';
+            err.message = System.Label.MSC_ERR_MEMBERSHIP_INVALID_INPUT_LIMIT_FORMAT;
+            responseMesage(400, err);
+            return;
+        } else if (isUsed!= null && isUsed.toLowerCase() != 'true' && isUsed.toLowerCase() != 'false') {
+            Msg err = new Msg();
+            err.messageCode = '513';//'BAD_REQUEST';
+            err.message = System.Label.MSC_ERR_PROMOTION_INVALID_INPUT_ISUSED_FORMAT;
+            responseMesage(400, err);
+            return;
+        }
+        /*
+        else if (String.isblank(startEvent )) {
+            Msg err = new Msg();
+            err.messageCode = 'BAD_REQUEST';
+            err.message = 'Parameter startEvent is empty';
+            responseMesage(400, err);
+            return;
+        }
+        else if (!Pattern.matches('^[0-9]{4}/[0-9]{2}/[0-9]{2}$', startEvent ))
+        {
+            Msg err = new Msg();
+            err.messageCode = 'BAD_REQUEST';
+            err.message = 'Parameter startEvent is wrong format.';
+            responseMesage(400, err);
+            return;
+        }
+        */
+        else if (Pattern.matches('^[-]?[0-9]+$',idx) && Integer.ValueOf(idx) < 0)
+        {
+            Msg err = new Msg();
+            err.messageCode = '514';//'BAD_REQUEST';
+            err.message = System.Label.MSC_ERR_MEMBERSHIP_INVALID_INPUT_INDEX_FORMAT;
+            responseMesage(400, err);
+            return;
+        }
+        else if (Pattern.matches('^[-]?[0-9]+$',lmt) && Integer.ValueOf(lmt) <= 0)
+        {
+            Msg err = new Msg();
+            err.messageCode = '515';//'BAD_REQUEST';
+            err.message = System.Label.MSC_ERR_MEMBERSHIP_INVALID_INPUT_LIMIT_VALUE;
+            responseMesage(400, err);
+            return;
+        }
+        else
+        {
+            /*
+            try
+            {
+                Date.parse(startEvent);
+            }
+            catch(Exception e)
+            {
+                system.debug('[MSC_PromotionGetInfo].validateDate parameter: ' + e.getMessage());
+                Msg err = new Msg();
+                err.messageCode = 'BAD_REQUEST';
+                err.message = 'Parameter startEvent is wrong format while parse to date';
+                responseMesage(400, err);
+                return;
+            }
+            */
+        }
+        try
+        {
+            Integer idxVal = Integer.valueOf(idx);
+            Integer lmtVal = Integer.valueOf(lmt);
+            /*
+            Integer currPageNum = Math.mod(idxVal , lmtVal) != 0 ? idxVal/lmtVal +1 : idxVal/lmtVal;
+            if (currPageNum == 0)
+            {
+                currPageNum = 1;
+            }
+            */
+            
+            List<PromotionResp> listPro = new List<PromotionResp> ();
+            Integer fromIdx = idxVal;
+            Integer toIdx = idxVal + lmtVal;
+            Integer counter = 0;
+            for (Promotion__c item : (List<Promotion__c>) makeQuery(lmtVal, idxVal , null, Boolean.valueOf(isUsed)))
+            {
+                if (counter >= fromIdx && counter <toIdx )
+                {
+                    PromotionResp newPro = new PromotionResp();
+                    newPro.objectId = item.Id;
+                    newPro.eventUrl = item.eventUrl__c;
+                    newPro.type    = String.valueOf(item.type__c);
+                    newPro.title = item.title__c;
+                    newPro.description = item.description__c;
+                    newPro.image = item.image__c;
+                    newPro.startEvent = item.startDate__c.format();
+                    newPro.endEvent = item.endDate__c.format();
+                    newPro.discount = String.valueOf(item.discount__c);
+                    //newPro.productArr = new List<ProductInPromotion>();
+                    if (item.ProductInStore__r.isEmpty())
+                    {
+                        newPro.barcode = '';
+                        system.debug('go to here - empty list product in store.');
+                        listPro.add(newPro);
+                        counter ++;            
+                    }
+                    else
+                    {
+                        system.debug('go to here - list product in store: ' + item.ProductInStore__r.size());
+                        for (ProductInStore__c proInStr : item.ProductInStore__r)
+                        {
+                            //ProductInPromotion newProduct = new ProductInPromotion();
+                            //newProduct.productId = proInStr.productCode__r.Id;       
+                            //newProduct.barcode = proInStr.productCode__r.barcode__c;
+                            //newProduct.productName = proInStr.productCode__r.productName__c;  
+                            //newPro.productArr.add(newProduct);
+                            if (counter >= fromIdx && counter <toIdx )
+                            {
+                                newPro.productId = proInStr.productCode__r.Id;       
+                                newPro.barcode = proInStr.productCode__r.barcode__c;
+                                newPro.productName = proInStr.productCode__r.productName__c; 
+                                listPro.add(newPro);
+                                counter ++;
+                            }
+                        }
+                    }
+                    
+                }
+                else if (counter >= toIdx )
+                {
+                    break;
+                }
+                else
+                {
+                    counter++;
+                }
+                
+                
+            }
+            /*
+            if (listPro.isEmpty())
+            {
+                SuccessMsg suc = new SuccessMsg ();
+                suc.successCode = 'BAD_REQUEST';
+                suc.message = 'Have no promotion.';
+                responseMesage(200, suc);
+            } 
+            else
+            {
+                 rep.responseBody = Blob.valueOf(JSON.serializePretty(listPro));     
+            }
+            */
+            rep.responseBody = Blob.valueOf(JSON.serializePretty(listPro));  
+        }
+        catch (Exception e)
+        {
+            system.debug('[MSC_PromotionGetInfo] query data: ' + e.getMessage());
+            Msg err = new Msg();
+            err.messageCode = '506';//'BAD_REQUEST';
+            err.message = System.Label.MSC_ERR_OTHER_SERVER;//e.getMessage();
+            responseMesage(500, err);
+            System.debug('★★★[MSC_PromotionGetInfo.getPromotion]★★★ errorCode 500 ' + e.getMessage());
+        }
+    }
+    
+    global class Msg {
+        public String messageCode {get; set;}
+        public String message {get; set;}
+    }
+    
+    global List<sObject> makeQuery(Integer pageSize, Integer off, Date strDate, Boolean isUsed)
+    {
+        /*
+        String newQuery = 'SELECT Id, eventUrl__c, type__c, title__c, description__c, image__c, startDate__c, endDate__c, (SELECT Id,productCode__r.barcode__c FROM ProductInStore__r) FROM Promotion__c WHERE del_flg__c = false AND isUsed__c= '
+        + isUsed + ' AND startDate__c >=' + String.Valueof(strDate)  + ' ORDER BY startDate__c DESC NULLS LAST';
+        system.debug('the new query is: ' + newQuery);
+        ApexPages.StandardSetController setCon = new ApexPages.StandardSetController(Database.getQueryLocator(newQuery ));
+        setCon.setPageSize(pageSize);//litmit number record per page.
+        setCon.setpageNumber(pageNum);//current page.
+        return (List<sObject>)setCon.getRecords();
+        */
+        //return [SELECT Id, eventUrl__c, type__c, title__c, description__c, image__c, startDate__c, endDate__c, discount__c, (SELECT Id,productCode__r.barcode__c, productCode__r.Id, productCode__r.productName__c FROM ProductInStore__r) 
+        //    FROM Promotion__c WHERE del_flg__c = false AND isUsed__c=:isUsed AND EndDate__c >= TODAY ORDER BY startDate__c DESC NULLS LAST LIMIT :pageSize OFFSET :off];
+        return [SELECT Id, eventUrl__c, type__c, title__c, description__c, image__c, startDate__c, endDate__c, discount__c, (SELECT Id,productCode__r.barcode__c, productCode__r.Id, productCode__r.productName__c FROM ProductInStore__r) 
+            FROM Promotion__c WHERE del_flg__c = false AND isUsed__c=:isUsed AND EndDate__c >= TODAY ORDER BY startDate__c DESC NULLS LAST];
+    }
+    
+    public class PromotionResp
+    {
+        public String objectId {get;set;}
+        public String eventUrl {get;set;}
+        public String type    {get;set;}
+        public String title {get;set;}
+        public String description {Get;set;}
+        public String image{get;set;}
+        public String startEvent{get;set;}
+        public String endEvent {get;set;}
+        public String discount {get;set;}
+        public String barcode {Get;set;}
+        public String productId {get;set;}
+        public String productName {get;set;}
+        //List<ProductInPromotion> productArr {get;set;}
+    }
+    
+  /*  public class ProductInPromotion
+    {
+        public String productId {get;set;}
+        public String productName {get;set;}
+        public String barcode {get;set;}
+    }*/
+}

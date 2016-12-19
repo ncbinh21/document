@@ -1,0 +1,7 @@
+Javascript:
+	- Có thể thay đổi nội dung HTML (thay đổi khung text)
+	- Có thể thay đổi thuộc tính HTML (thay đổi hình ảnh)
+	- Có thể thanh đổi style trong CSS (thay đổi style: phông chữ, màu chữ ...)
+	- Có thể xác nhận đầu vào (True nếu đầu vào x > 0 còn lại là false)
+	
+DOM element: có nhiệm vụ truy xuất tới thẻ HTML nào đó thông qua các thuộc tính như tên class, id, name của thẻ HTML

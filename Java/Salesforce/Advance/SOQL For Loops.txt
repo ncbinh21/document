@@ -1,0 +1,8 @@
+Query without a for loop
+List<Merchandise__c> ml = [SELECT Id,Name FROM Merchandise__c];
+
+
+Query within a for loop
+for (List<Merchandise__c> ml : [SELECT Id,Name FROM Merchandise__c]){
+	// Do something.
+}

@@ -1,0 +1,3 @@
+Cách lấy chuỗi JSON 
+http://salesforce.stackexchange.com/questions/46394/json-response-parser-returning-some-fields-null
+

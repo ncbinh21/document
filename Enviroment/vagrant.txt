@@ -1,0 +1,61 @@
+git clone (...)
+git clone (...) -branch develop
+Change port -> vagrant file in folder vagrant
+vagrant up -> create vagrant sever
+
+-------------------------------------------------
+
+vagrant ssh
+su root
+pass: vagrant
+mysql -uroot -p
+pass: null
+show databases;
+create database database_name;
+use database_name;
+source /data/htdocs/mysql/database_name_move.sql;
+
+-------------------------------------------------
+
+vagrant ssh
+su root
+pass: vagrant 
+cd /data/htdocs/symfony/
+php symfony orangehrm:publish-assets -> assets plugin
+php symfony cc -> clear cache
+ 
+-------------------------------------------------
+
+vagrant ssh
+su root
+pass: vagrant 
+cd ../.. -> ra ngoai cung
+cd etc/httpd/conf ->
+vi httpd.conf ->
+
+/ -> searcch 
+n -> next
+i: -> insert
+:wq -> save
+
+
+
+service httpd restart
+
+------------------------------------------------
+
+sudo chmod -R 777 var pub : Giving full control (read/write/execute)
+sudo rm -rf var/cache/* var/generation/* : clear cache sever
+
+
+
+
+
+
+
+
+
+
+
+
+

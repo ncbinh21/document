@@ -1,0 +1,13 @@
+1.During a postback request, the view state is decoded and used as the basis for updating the values on the page.
+2. After the view state is decoded, expressions are evaluated and set methods on the controller and any controller extensions, including
+set methods in controllers defined for custom components, are executed.
+These method calls do not update the data unless all methods are executed successfully. For example, if one of the methods updates
+a property and the update is not valid due to validation rules or an incorrect data type, the data is not updated and the page redisplays
+with the appropriate error messages.
+3. The action that triggered the postback request is executed. If that action completes successfully, the data is updated. If the postback
+request returns the user to the same page, the view state is updated.
+4. The resulting HTML is sent to the browser.
+
+If the postback request indicates a page redirect and the redirect is to a page that uses the same controller and a proper subset of
+controller extensions of the originating page, a postback request is executed for that page. Otherwise, a get request is executed for the
+page. If the postback request contains an <apex:form> component, only the ID query parameter on a postback request is returned.

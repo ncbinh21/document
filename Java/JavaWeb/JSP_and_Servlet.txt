@@ -1,0 +1,46 @@
+JSP:(JavaServer Pages)là một công nghệ Java cho phép các nhà phát triển tạo nội dung HTML, XML
+	JSP là cách đơn giản hóa hơn cho Servlet. 
+	Nếu như đối với Servlet phải viết mã Java và biên dịch bằng tay trước khi sử dụng với trình chủ Web server thì JSP không cần. 
+	JSP viết mã Java như Servlet nhưng cho phép trộn lẫn Java với các thẻ HTML để tạo ra Servlet xử lý các yêu cầu mà trình khác gửi đến trang.
+	JSP đơn giản và dễ sử dụng hơn Servlet mặc dù sau khi biên dịch và thực thi chúng chỉ là một.
+	Có 5 giai đoạn sống của JSP:
+		1.Biên dịch trang: Quá trình biên dịch JSP thực tế là chuyển trang JSP thành servlet
+		2.Nạp trang: 	Kể từ giai đoạn này, quá trình nạp trang tương tự như servlet
+				    Chỉ có một điểm khác là:
+					Servlet chỉ được nạp một lần
+					JSP mặc dù đã biên dịch nhưng phải nạp lại nhiều lần mỗi khi web server nhận được yêu cầu trang từ trình duyệt.
+		3.Khởi tạo: jspInit();
+		4.Thực thi: Phương thức _jspService sẽ chuyển đến hai lớp đối tượng HttpServletRequest và HttpServletResponse 
+			để đọc và ghi kết xuất trả về trình khách
+		5.Dọn dẹp: phương thức jspDestroy() để giải phóng mã trang khỏi bộ nhớ
+Servlet: Java Servlets là các chương trình chạy trên một Web server hoặc một Application server.
+		 Thực hiện như là tầng trung gian giữa yêu cầu từ một trình duyệt web hoặc HTTP client với các Database hoặc các ứng dụng trên HTTP server.
+
+		Sử dụng Servlets, bạn có thể thu thập Input từ người sử dụng thông qua các form trên trang web, 
+		hiển thị các bản ghi (record) từ một Database hoặc từ nguồn khác, và tạo các trang web động.
+
+ 	Một Servlet khi khởi tạo thì nói sống mãi trong bộ nhớ của server. 
+			Luôn lắng nghe và chờ đợi khí người dùng yêu cầu đến nó thì sẽ sẵn dùng chứ không cần khởi tạo một lần nữa.. 
+			Servlet chỉ ngừng lại khi chúng ta Stop hay Restart lại server.
+	Có 5 bước:
+		1.Tải Servlet Class vào bộ nhớ
+		2.Tạo đối tượng Servlet
+		3.Gọi method servlets init()
+		4.Gọi method servlets service()
+		5.Gọi method servlets destroy()
+		Bước 1, 2 và 3 được thực thi một lần duy nhất, khi mà servlet được nạp lần đầu
+		Bước 4 được thực thi nhiều lần, mỗi khi có đòi hỏi từ phía người dùng tới servlet. 
+		Bước 5 nó được thực thi khi bộ chứa servlet (Servlet Container) trút bỏ (unloaded) servlet.
+		
+------------------------------------------------------------------------------------------------------------------------------
+
+JSP sinh ra để giảm sự khó khăn khi code giao diện của một trang Web.
+Việc thiết kế giao diện một trạng web trên HTML bao giờ cũng đơn giản hơn việc in ra từng dòng code HTML bằng lệnh của Servlet. 
+JSP ra đời không nhằm thay thế Servlet, nó đơn giản là hỗ trợ cho servlet. 
+
+Như vậy trong một ứng dụng Web JSP sẽ đảm nhiệm vai trò trên tầng VIEW.
+Servlet sẽ đảm nhiệm vai trò của tầng CONTROLLER.
+
+Một lập trình viên giỏi cần phải biết kết hợp JSP, Servlet và Filter lại với nhau trong một ứng dụng.
+Mặc dù JSP cho phép bạn code Java xen kẽ trong HTML, tuy nhiên hãy tránh xa điều đó
+-> Sử dụng các thẻ mở rộng theo đúng phong cách HTML. 

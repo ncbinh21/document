@@ -1,0 +1,22 @@
+﻿Có rất nhiều kiểu cơ sở dữ liệu ở ngoài kia, và mỗi cơ sở dữ liệu phù hợp cho một tập các yêu cầu xác định mà bạn có trong ứng dụng của mình. Một số loại cơ sở dữ liệu phổ biến là:
+
+Document Databases (ví dụ: MongoDB): Các cơ sở dữ liệu dạng document thường được sử dụng để lưu trữ các JSON document trong các collection và truy vấn các trường liên quan. 
+Bạn có thể sử dụng cơ sở dữ liệu này để xây dựng các ứng dụng không có quá nhiều mối quan hệ giữa các document. 
+Một ví dụ tốt của dạng ứng dụng này là - Blog Engine / Nếu bạn muốn lưu trữ một danh mục sản phẩm.
+
+Graph Databases (ví dụ: Neo4j): Các cơ sở dữ liệu dạng đồ thị (graph) thường được sử dụng để lưu trữ mối quan hệ giữa các thực thể, trong đó các node là các thực thể và cạnh nối là mối quan hệ giữa chúng. 
+Ví dụ: nếu bạn đang xây dựng một mạng xã hội và nếu Người A follow Người B. 
+Thì Người A và Người B có thể là các node và "follow" là cạnh nối giữa chúng. Đồ thị (graph) là cách tuyệt vời để làm công việc join giữa các node thậm chí trong trường hợp chiều sâu của liên kết đến 100 cấp.
+
+Cache (ví dụ: Redis): Cache thường được sử dụng khi bạn cần truy cập cực nhanh đến dữ liệu của mình. 
+Ví dụ, nếu bạn đang xây dựng một ứng dụng thương mại điện tử. Bạn có các danh mục sản phẩm phải load trên mỗi sự kiện page load. 
+Thay vì việc cứ phải truy cập cơ sở dữ liệu cho mỗi hoạt động đọc đó (cho mỗi lần page load) thường tốn nhiều thời gian, bạn có thể lưu trữ nó trong cache sẽ giúp cho công việc đọc/ghi có tốc độ cực nhanh. 
+Cache giống như Redis sẽ là một bộ đệm cho cơ sở dữ liệu của bạn phục vụ cho những truy xuất dữ liệu thường xuyên. 
+Bạn có thể lưu trữ dữ liệu trong cache và không phải truy xuất cơ sở dữ liệu trong toàn bộ quá trình.
+
+Search Databases (ví dụ: ElasticSearch): Nếu bạn muốn thực hiện một full text search trên dữ liệu của mình 
+(ví dụ: các sản phẩm trong một ứng dụng thương mại điện tử) thì bạn cần một search database như ElasticSearch, 
+nó có thể giúp bạn thực thi việc tìm kiếm trên một lượng dữ liệu lớn và mang lại cho bạn một tập các đặc trưng thú vị.
+
+Row Store (ví dụ: Cassandra): Cassandra thường được sử dụng để lưu trữ dạng dữ liệu theo thời gian như các phân tích / logs/ dữ liệu số lượng lớn được thu về từ các bộ cảm biến sensor. 
+Nếu bạn có một dạng ứng dụng kiểu đó mà có số lượng dữ liệu cần ghi rất lớn và ít phải đọc và dữ liệu là không có mối quan hệ (non-relational) thì Cassandra là một cơ sở dữ liệu mà bạn nên quan tâm tới.

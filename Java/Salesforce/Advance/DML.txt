@@ -1,0 +1,22 @@
+DML calls on single sObjects
+for(Line_Item__c li : liList) {
+	if (li.Units_Sold__c > 10) {
+		li.Description__c = 'New description';
+	}
+	// Not a good practice since governor limits might be hit.
+	update li;
+}
+
+
+
+DML calls on sObject lists
+List<Line_Item__c> updatedList = new List<Line_Item__c>();
+for(Line_Item__c li : liList) {
+	if (li.Units_Sold__c > 10) {
+		li.Description__c = 'New description';
+		updatedList.add(li);
+	}
+
+}
+// Once DML call for the entire list of line items
+update updatedList;
