@@ -1,7 +1,0 @@
-git pull
-git commit -m '[ADD/UPDATE/DELETE]' Refs #Id(Redmine) Name_Task'
-git push
-
-git status -> show files are changed
-git add ....
-git clone
