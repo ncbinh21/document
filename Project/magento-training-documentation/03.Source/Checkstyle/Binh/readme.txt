@@ -1,0 +1,1 @@
+Because, parent of class RegisterCondition have __construct include 10 parameters. And I create 1 parameter to use in this class.

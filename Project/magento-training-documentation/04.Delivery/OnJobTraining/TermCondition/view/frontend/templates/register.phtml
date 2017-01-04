@@ -1,0 +1,46 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Create account form template
+ *
+ * @var $block \Magento\Customer\Block\Form\Register
+ */
+?>
+<?php $result = $block->enable();
+?>
+<?php echo $this->getLayout()
+    ->createBlock("Magento\Customer\Block\Form\Register")
+    ->setTemplate("form/register.phtml")
+    ->toHtml(); ?>
+
+<div id="formTerm" style="display:none;">
+<?php if ($result != null && trim($result) != null) {
+    echo "<br>";
+    echo "<div>";
+    echo "<label class='label' style='font-weight: 600'><span>";
+    echo __('Term and Condition');
+    echo "</span></label>";
+    echo "<textarea rows='4' cols='50' readonly>";
+    echo $result;
+    echo "</textarea>";
+    echo "</div>";
+    echo "<div>";
+    echo "<input type='checkbox' name='checkbox' id='checkbox' data-validate='{required:true}' value='1'>I agree";
+    echo "<label class='label'><span></span></label>";
+    echo "</div>";
+} ?>
+</div>
+<script>
+    require(['jquery', 'jquery/ui'], function ($)
+    {
+        $(".confirmation").append($("#formTerm").html());
+    });
+</script>
